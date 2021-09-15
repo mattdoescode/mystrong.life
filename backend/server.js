@@ -12,10 +12,20 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json());
+app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+  extended: true
+}));
+
+var myLogger = function (req, res, next) {
+  console.log('LOGGED REQUEST FROM- ' + req.headers.host + " " + "REQUESTED " + req.url)
+  next()
+}
+
+app.use(myLogger)
+
 
 // database
 const db = require("./models");
