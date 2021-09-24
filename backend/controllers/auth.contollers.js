@@ -9,7 +9,6 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
-  console.log(req.body.firstName)
   console.log(req.body)
   // Save User to Database
   User.create({
@@ -19,6 +18,7 @@ exports.signup = (req, res) => {
     firstname: req.body.firstName,
     lastname: req.body.lastName
   })
+  // REMOVE THIS -> ANYONE can make a request to sign up with elevated permissions
     .then(user => {
       if (req.body.roles) {
         Role.findAll({
