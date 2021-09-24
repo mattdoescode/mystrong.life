@@ -20,7 +20,7 @@ app.use(express.urlencoded({
 }));
 
 var myLogger = function (req, res, next) {
-  console.log('LOGGED REQUEST FROM- ' + req.headers.host + " " + "REQUESTED " + req.url)
+  console.log('LOGGED REQUEST FROM- ' + req.headers.referer + " REQUESTED " + req.url)
   next()
 }
 
